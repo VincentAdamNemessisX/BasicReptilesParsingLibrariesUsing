@@ -68,6 +68,23 @@ soup = BeautifulSoup(html, 'lxml')
 # using text get things text is a re expression object
 # print(soup.find_all(text=re.compile('ar')))
 # using find method get things
-print(soup.find(name='ul'))  # only return first item
-print(type(soup.find(name='ul')))
-print(soup.find(class_='list'))
+# print(soup.find(name='ul'))  # only return first item
+# print(type(soup.find(name='ul')))
+# print(soup.find(class_='list'))
+# Css selector
+# get element
+print(soup.select('.panel .panel-heading'))
+print(soup.select('ul li'))
+print(soup.select('#list-2 .element'))
+print(type(soup.select('ul')[0]))
+# cycle in cycle
+for ul in soup.select('ul'):
+    print(ul.select('li'))
+# cycle in cycle to get attrs
+for ul in soup.select('ul'):
+    print(ul['id'])
+    print(ul.attrs['id'])
+# get text content
+for li in soup.select('li'):
+    print("Get Text:", li.getText())
+    print('String:', li.string)
